@@ -9802,10 +9802,20 @@
 
                 renderer.render(scene, camera);
             }
+            /* ==== 改进钩子：把核心对象暴露给 js/improvements.js（其余代码未改动） ==== */
+            window.CABIN_CORE = {
+                scene, camera, renderer,
+                get gameSec() { return gameSec; }, set gameSec(v) { gameSec = v; },
+                get timeScale() { return timeScale; }, set timeScale(v) { timeScale = v; },
+                wx, setWeather, WX_LIST,
+                get signText() { return signText; }, drawSign,
+                timeSlider, speedSlider, sliderToScale, wxRandToggle,
+            };
             animate(0);
             addEventListener('resize', () => { camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight); });
         })();
     </script>
+    <script src="js/improvements.js" defer></script>
 </body>
 
 </html>
